@@ -1,10 +1,15 @@
 const express = require("express");
+      passport = require("passport");
+      GoogleStrategy = require("passport-google-oauth20").Strategy;
       app = express();
 
+// APP CONFIG
 
-app.get("/", (req, res) => {
-  res.send({ hello: 'mike' });
-});
+// PASSPORT CONFIG
+passport.use(new GoogleStrategy({
+
+}));
+
 
 // MISSING ROUTE
 app.get("*", (req, res) => {
