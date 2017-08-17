@@ -8,12 +8,21 @@ const express = require('express');
 
 // PASSPORT CONFIG
 passport.use(new GoogleStrategy({
-  clientID: keys.GoogleClientID,
-  clientSecret: keys.GoogleClientSecret,
+  clientID: keys.googleClientID,
+  clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback'
-}, (accessToken) => {
-  console.log(accessToken);
+}, (accessToken, refreshToken, profile, done) => {
+  console.log('accessToken: ', accessToken );
+  console.log('refreshToken: ', refreshToken );
+  console.log('profile: ', profile);
 }));
+
+// ROUTES
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email'] // access to a googlers account information
+}));
+
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 
 // MISSING ROUTE
