@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const cookieSession = require('cookie-session');
+const passport = require('passport');
 const keys = require('./config/keys');
 const app = express();
 
@@ -9,21 +9,19 @@ const app = express();
 require('./models/user');
 require('./middleware/passport');
 
-// ROUTES
-const authenticationRoutes = require('./routes/authentications');
-
-authenticationRoutes(app);
-
-
 // APP CONFIG
 const database = keys.mongoURI || 'mongodb://localhost/e_feeback'
 mongoose.connect(database);
 app.use(cookieSession({
-  maxAge: 30 * 24 * 60 * 60 * 1000,
+  maxAge: 30 * 24 * 60 * 60 * 1000, // length of cookies life within browser before it expires(30days, 24hours, 60minutes, 60seconds, 1000milliseconds)
   keys: [keys.cookieKey]
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// ROUTES
+const authenticationRoutes = require('./routes/authentications');
+authenticationRoutes(app);
 
 // MISSING ROUTE
 app.get('*', (req, res) => {
