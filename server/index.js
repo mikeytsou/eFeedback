@@ -7,11 +7,10 @@ const app = express();
 
 // MODELS
 require('./models/user');
-require('./middleware/passport');
+require('./services/passport');
 
 // APP CONFIG
-const database = keys.mongoURI || 'mongodb://localhost/e_feeback'
-mongoose.connect(database);
+mongoose.connect(keys.mongoURI);
 app.use(cookieSession({
   maxAge: 30 * 24 * 60 * 60 * 1000, // length of cookies life within browser before it expires(30days, 24hours, 60minutes, 60seconds, 1000milliseconds)
   keys: [keys.cookieKey]
@@ -23,7 +22,7 @@ app.use(passport.session());
 const authenticationRoutes = require('./routes/authentications');
 authenticationRoutes(app);
 
-// MISSING ROUTE
+// DEFAULT ROUTE
 app.get('*', (req, res) => {
   res.send('PAGE NOT FOUND');
 });
