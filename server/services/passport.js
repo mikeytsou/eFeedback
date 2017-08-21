@@ -23,14 +23,13 @@ passport.use(new GoogleStrategy({
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback',
   proxy: true
-}, (accessToken, refreshToken, profile, done) => {
-  User.findOne({ googleId: profile.id }) // creates or retreives an instance of a user model
-    .then((existingUser) => {
+},
+  async (accessToken, refreshToken, profile, done) => {
+    const existingUser = await User.findOne({ googleId: profile.id }) // creates or retreives an instance of a user model
       if (existingUser) {
         done(null, existingUser);
       } else {
-        new User({ googleId: profile.id }).save() // saves instance of a new user into database
-          .then((user) => done(null, user));
+        const user = await new User({ googleId: profile.id }).save() // saves instance of a new user into database
+        done(null, user);
       }
-    });
 }));
