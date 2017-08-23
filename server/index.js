@@ -9,7 +9,7 @@ const app = express();
 require('./models/user');
 require('./services/passport');
 
-// APP CONFIG
+// APP CONFIG MIDDLEWARE
 mongoose.connect(keys.mongoURI);
 app.use(cookieSession({
   maxAge: 30 * 24 * 60 * 60 * 1000, // length of cookies life within browser before it expires(30days, 24hours, 60minutes, 60seconds, 1000milliseconds)
