@@ -18,7 +18,7 @@ class Header extends Component {
     return (
       <nav className="ui inverted attached menu">
         <div className="ui container">
-          <a href="" className="item">eFeedback</a>
+          <a href="/" className="item">eFeedback</a>
 
           <div className="right menu">
             {this.renderContent()}
