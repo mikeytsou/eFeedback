@@ -6,11 +6,11 @@ class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return 'Still deciding';
+        return;
       case false:
-        return 'I\'m logged out';
+        return <a href="/auth/google" className="item">Login With Google</a>;
       default:
-        return 'I\'m logged in';
+        return <a href="/api/logout" className="item">Log Out</a>;
     }
   }
 
@@ -21,7 +21,7 @@ class Header extends Component {
           <a href="" className="item">eFeedback</a>
 
           <div className="right menu">
-            <a href="" className="item">{this.renderContent()}</a>
+            {this.renderContent()}
           </div>
         </div>
       </nav>
