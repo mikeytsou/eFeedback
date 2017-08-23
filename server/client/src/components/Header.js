@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   renderContent() {
@@ -18,7 +18,12 @@ class Header extends Component {
     return (
       <nav className="ui inverted attached menu">
         <div className="ui container">
-          <a href="/" className="item">eFeedback</a>
+          <Link
+            to={this.props.auth ? '/surveys' : '/'}
+            className="item"
+          >
+            eFeedback
+          </Link>
 
           <div className="right menu">
             {this.renderContent()}
