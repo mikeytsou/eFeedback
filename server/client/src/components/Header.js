@@ -12,8 +12,8 @@ class Header extends Component {
         return <a href="/auth/google" className="item">Login With Google</a>;
       default:
         return [
-          <Payment />,
-          <a href="/api/logout" className="item">Log Out</a>
+          <Payment key="1"/>,
+          <a key="2" href="/api/logout" className="item">Log Out</a>
         ];
     }
   }
