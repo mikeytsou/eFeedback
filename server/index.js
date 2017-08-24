@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const app = express();
 
@@ -11,6 +12,7 @@ require('./services/passport');
 
 // APP CONFIG MIDDLEWARE
 mongoose.connect(keys.mongoURI);
+app.use(bodyParser.json());
 app.use(cookieSession({
   maxAge: 30 * 24 * 60 * 60 * 1000, // length of cookies life within browser before it expires(30days, 24hours, 60minutes, 60seconds, 1000milliseconds)
   keys: [keys.cookieKey]
