@@ -3,8 +3,6 @@ import StripeCheckout from 'react-stripe-checkout';
 
 class Payment extends Component {
   render() {
-    debugger;
-
     return(
       <StripeCheckout
         amount={500} // $5.00 in cents
