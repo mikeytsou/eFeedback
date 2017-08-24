@@ -19,8 +19,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ROUTES
-const authenticationRoutes = require('./routes/authentications');
-authenticationRoutes(app);
+const authRoutes = require('./routes/authRoutes');
+const billingRoutes = require('./routes/billingRoutes');
+authRoutes(app);
+billingRoutes(app);
 
 // DEFAULT ROUTE
 app.get('*', (req, res) => {
