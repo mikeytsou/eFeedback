@@ -24,8 +24,10 @@ app.use(passport.session());
 // ROUTES
 const authRoutes = require('./routes/authRoutes');
 const billingRoutes = require('./routes/billingRoutes');
+const surveyRoutes = require('./routes/surveyRoutes');
 authRoutes(app);
 billingRoutes(app);
+surveyRoutes(app);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build')); // any request that doesn't match exisiting route handlers, express will first look to serve up production assest ie. the main.js or main.css file
