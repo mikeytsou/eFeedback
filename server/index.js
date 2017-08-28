@@ -8,6 +8,7 @@ const app = express();
 
 // MODELS
 require('./models/user');
+require('./models/survey');
 require('./services/passport');
 
 // APP CONFIG MIDDLEWARE
