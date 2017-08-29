@@ -11,9 +11,9 @@ class Mailer extends helper.Mail {
     this.body = new helper.Content('text/html', content);
     this.recipients = this.formatAddresses(recipients);
 
-    this.addContent(this.body); // addContent is a helper function from helper.Mail
+    this.addContent(this.body); // addContent is a helper function provided by helper.Mail
     this.addClickTracking();
-
+    this.addRecipients();
   }
 
   // extract each email from subdocument recipient collection
@@ -29,6 +29,14 @@ class Mailer extends helper.Mail {
 
     trackingSettings.setClickTracking(clickTracking);
     this.addTrackingSettings(trackingSettings);
+  }
+
+  addRecipients() {
+    const personalize = new helper.Personalization();
+    this.recipients.forEach((recipient) => {
+      personalize.addTo(recipient);
+    });
+    this.addPersonalization(personalize);
   }
 }
 
