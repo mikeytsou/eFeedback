@@ -13,7 +13,8 @@ class Header extends Component {
       default:
         return [
           <Payment key="1"/>,
-          <a key="2" href="/api/logout" className="item">Log Out</a>
+          <li key="2" className="item">Credits: {this.props.auth.credits}</li>,
+          <a key="3" href="/api/logout" className="item">Log Out</a>
         ];
     }
   }

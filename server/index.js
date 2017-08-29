@@ -8,6 +8,7 @@ const app = express();
 
 // MODELS
 require('./models/user');
+require('./models/survey');
 require('./services/passport');
 
 // APP CONFIG MIDDLEWARE
@@ -23,8 +24,19 @@ app.use(passport.session());
 // ROUTES
 const authRoutes = require('./routes/authRoutes');
 const billingRoutes = require('./routes/billingRoutes');
+const surveyRoutes = require('./routes/surveyRoutes');
 authRoutes(app);
 billingRoutes(app);
+surveyRoutes(app);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build')); // any request that doesn't match exisiting route handlers, express will first look to serve up production assest ie. the main.js or main.css file
+
+  const path = require('path');
+  app.get('*', (req, res) => { // express will then attempt to serve up the index.html file(for routes created with react-router) if it doesn't recognize the routes in the existing route handlers
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  });
+}
 
 // DEFAULT ROUTE
 app.get('*', (req, res) => {
