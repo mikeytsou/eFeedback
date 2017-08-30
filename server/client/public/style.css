@@ -1,3 +1,8 @@
 #landing-container {
   text-align: center;
 }
+
+#input-error {
+  color: #9F3A38 !important;
+  margin-bottom: 20px;
+}

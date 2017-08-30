@@ -6,7 +6,9 @@ export default (props) => {
     <div>
       <label>{props.label}</label>
       <input {...props.input} />
-      {props.meta.touched && props.meta.error}
+      <div id="input-error">
+        {props.meta.touched && props.meta.error}
+      </div>
     </div>
   );
 };
