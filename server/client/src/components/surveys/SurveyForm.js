@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { Link } from 'react-router-dom';
 import SurveyField from './SurveyField';
 
 const FIELDS = [
@@ -28,9 +29,18 @@ class SurveyForm extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.props.handleSubmit((val) => console.log(val))}>
-          {this.renderFields()}
-          <button type="submit">Submit</button>
+        <form className="ui form" onSubmit={this.props.handleSubmit((val) => console.log(val))}>
+          <div className="field">
+            {this.renderFields()}
+          </div>
+
+          <Link to="/surveys" className="ui red button">
+            Cancel
+          </Link>
+
+          <button className="ui teal button right floated" type="submit">
+            Next <i className="checkmark icon"></i>
+          </button>
         </form>
       </div>
     );

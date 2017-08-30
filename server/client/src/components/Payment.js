@@ -13,7 +13,7 @@ class Payment extends Component {
         token={(token) => this.props.handleToken(token)} // expects to receive a callback function and is called after successfully retreiving an authorization token
         stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
       >
-        <a className="active green item">Add Credits</a>
+        <a className="active teal item">Add Credits</a>
       </StripeCheckout>
     );
   }
