@@ -30,7 +30,7 @@ class SurveyForm extends Component {
   render() {
     return(
       <div>
-        <form className="ui form" onSubmit={this.props.handleSubmit((val) => console.log(val))}>
+        <form className="ui form" onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
           <div className="field">
             {this.renderFields()}
           </div>
