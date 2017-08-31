@@ -34,7 +34,7 @@ class SurveyForm extends Component {
           </Link>
 
           <button className="ui teal button right floated" type="submit">
-            Next <i className="checkmark icon"></i>
+            Next
           </button>
         </form>
       </div>

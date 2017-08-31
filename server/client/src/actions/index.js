@@ -20,3 +20,7 @@ export const handleToken = (token) => {
       }));
   }
 };
+
+export const submitSurvey = (values) => {
+  return { type: 'submit survey!' };
+};
