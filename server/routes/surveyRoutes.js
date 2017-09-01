@@ -25,7 +25,12 @@ module.exports = (app) => {
         return { email: event.email, surveyId: match.surveyId, choice: match.choice };
       }
     });
-    console.log(events);
+
+    const compactEvents = _.compact(events); // takes an array and removes all elements that are 'undefined'
+    const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId'); // go through compactEvents and look at the email and surveyId property and remove duplicates
+
+    console.log(uniqueEvents);
+    res.send({});
   });
 
   // create new survey and send out email
