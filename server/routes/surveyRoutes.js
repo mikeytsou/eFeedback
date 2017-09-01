@@ -1,3 +1,6 @@
+const _ = require('lodash');
+const Path = require('path-parser'); // helps extract the :surveyId and :choice
+const { URL } = require('url'); // helps parse urls
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -14,8 +17,11 @@ module.exports = (app) => {
 
   //
   app.post('/api/surveys/webhooks', (req, res) => {
-    console.log(req.body);
-    res.send({});
+    const events = _.map(req.body, (event) => {
+      const pathname = new URL(event.url).pathname; // extract the route path '/api/surveys/aw31ad/yes'
+      const p = new Path('/api/surveys/:surveyId/:choice');
+      console.log(p.test(pathname));
+    })
   });
 
   // create new survey and send out email
