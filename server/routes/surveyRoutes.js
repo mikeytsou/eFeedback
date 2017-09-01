@@ -12,6 +12,12 @@ module.exports = (app) => {
     res.send('Thanks for responding!');
   });
 
+  //
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body);
+    res.send({});
+  });
+
   // create new survey and send out email
   app.post('/api/surveys', requireLogin, requireCredits, async (req,res) => {
     const { title, subject, body, recipients } = req.body;
