@@ -11,7 +11,7 @@ const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
   // redirects after email has been responded
-  app.get('/api/surveys/complete', (req, res) => {
+  app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for responding!');
   });
 
@@ -37,7 +37,8 @@ module.exports = (app) => {
         }
       }, {
         $inc: { [event.choice]: 1 }, // increment the 'yes' or 'no' property by 1 in the survey model
-        $set: { 'recipients.$.responded': true } // set responded to 'true' for the found recipient in $elemMatch
+        $set: { 'recipients.$.responded': true }, // set responded to 'true' for the found recipient in $elemMatch
+        lastResponded: new Date()
       }).exec();
     });
 
@@ -72,4 +73,3 @@ module.exports = (app) => {
     }
   });
 };
-
