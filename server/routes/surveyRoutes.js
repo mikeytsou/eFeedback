@@ -29,6 +29,17 @@ module.exports = (app) => {
 
     const compactEvents = _.compact(events); // takes an array and removes all elements that are 'undefined'
     const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId'); // go through compactEvents and look at the email and surveyId property and remove duplicates
+    const updateEvents = _.each(uniqueEvents, (event) => {
+      Survey.updateOne({ // find AND update one survey that matches all the following properties
+        _id: event.surveyId,
+        recipients: {
+          $elemMatch: { email: event.email, responded: false } // look for a matching recipient in the found survey that matches the email and responded false
+        }
+      }, {
+        $inc: { [event.choice]: 1 }, // increment the 'yes' or 'no' property by 1 in the survey model
+        $set: { 'recipients.$.responded': true } // set responded to 'true' for the found recipient in $elemMatch
+      }).exec();
+    });
 
     console.log(uniqueEvents);
     res.send({});
@@ -62,15 +73,3 @@ module.exports = (app) => {
   });
 };
 
-
-
-Survey.updateOne({ // find AND update one survey that matches all the following properties
-  // $ is a mongo operater
-  id: surveyId,
-  recipients: {
-    $elemMatch: { email: email, responded: false } // look for a matching recipient in the found survey that matches the email and responded false
-  }
-}, {
-  $inc: { [choice]: 1 }, // increment the 'yes' or 'no' property by 1 in the survey model
-  $set: { 'recipients.$.responded': true } // set responded to 'true' for the found recipient in $elemMatch
-});
