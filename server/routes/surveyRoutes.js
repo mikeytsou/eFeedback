@@ -15,12 +15,13 @@ module.exports = (app) => {
     res.send('Thanks for responding!');
   });
 
-  //
+  // handles recipients click events
   app.post('/api/surveys/webhooks', (req, res) => {
+    const path = new Path('/api/surveys/:surveyId/:choice');
+
     const events = _.map(req.body, (event) => {
-      const pathname = new URL(event.url).pathname; // extract the route path '/api/surveys/aw31ad/yes'
-      const p = new Path('/api/surveys/:surveyId/:choice');
-      const match = p.test(pathname) // returns and object or null
+      const pathname = new URL(event.url).pathname; // extract the route path '/api/surveys/aw31ad/yes' from the path
+      const match = path.test(pathname) // returns an object or null
       if (match) {
         return { email: event.email, surveyId: match.surveyId, choice: match.choice };
       }
@@ -60,3 +61,14 @@ module.exports = (app) => {
     }
   });
 };
+
+
+
+Survey.updateOne({ // find one survey that matches all the following properties and update it
+  id: surveyId,
+  recipients: {
+    $elemMatch: { email: email, responded: false } // look for a matching recipient in the found survey that matches the email and responded false
+  }
+}, {
+
+});
