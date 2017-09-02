@@ -64,11 +64,13 @@ module.exports = (app) => {
 
 
 
-Survey.updateOne({ // find one survey that matches all the following properties and update it
+Survey.updateOne({ // find AND update one survey that matches all the following properties
+  // $ is a mongo operater
   id: surveyId,
   recipients: {
     $elemMatch: { email: email, responded: false } // look for a matching recipient in the found survey that matches the email and responded false
   }
 }, {
-
+  $inc: { [choice]: 1 }, // increment the 'yes' or 'no' property by 1 in the survey model
+  $set: { 'recipients.$.responded': true } // set responded to 'true' for the found recipient in $elemMatch
 });
