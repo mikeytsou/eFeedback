@@ -6,3 +6,13 @@
   color: #9F3A38 !important;
   margin-bottom: 20px;
 }
+
+#add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.ui.centered.grid {
+  margin-top: 10px;
+}

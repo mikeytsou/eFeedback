@@ -19,8 +19,12 @@ class SurveyNew extends Component {
 
   render() {
     return(
-      <div>
-        {this.renderContent()}
+      <div className="ui centered grid">
+        <div className="fourteen wide column">
+          <div className="ui divided items">
+            {this.renderContent()}
+          </div>
+        </div>
       </div>
     );
   }

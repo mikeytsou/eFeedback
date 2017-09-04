@@ -7,7 +7,7 @@ const Dashboard = () => {
     <div>
       <SurveyList />
 
-      <Link to="/surveys/new" className="circular ui icon button massive right floated">
+      <Link to="/surveys/new" id="add-button" className="circular ui icon button massive">
         <i className="plus icon"></i>
       </Link>
     </div>
