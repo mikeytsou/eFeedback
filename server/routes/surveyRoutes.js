@@ -10,8 +10,10 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
+  // show all created surveys by user
   app.get('/api/surveys', requireLogin, (req, res) => {
-    Survey.find({_user: req.user.id})
+    Survey.find({ _user: req.user.id })
+      .select({ recipients: false })
       .then((surveys) => res.send(surveys));
   });
 
