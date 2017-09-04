@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SurveyList from './surveys/SurveyList';
 
 const Dashboard = () => {
   return (
     <div>
-      Dashboard
-      <Link to="/surveys/new" className="circular ui icon button massive right floated">
+      <SurveyList />
+
+      <Link to="/surveys/new" id="add-button" className="circular ui icon button massive">
         <i className="plus icon"></i>
       </Link>
     </div>
