@@ -10,6 +10,11 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys');
 
 module.exports = (app) => {
+  app.get('/api/surveys', requireLogin, (req, res) => {
+    Survey.find({_user: req.user.id})
+      .then((surveys) => res.send(surveys));
+  });
+
   // redirects after email has been responded
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for responding!');
