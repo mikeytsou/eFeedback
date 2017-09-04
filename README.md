@@ -8,13 +8,14 @@ Logging in with Oauth takes the users to their homepage, where they can view a l
 
 ![](/github_eFeedback_surveys.png)
 
+Users must provide a title, subject, body, and recipient(s) inorder to send out emails.
+
+![](/github_eFeedback_form.png)
+
 Users can purchase more credits if they need to send out more emails.
 
 ![](/github_eFeedback_stripe.png)
 
-Users must provide a title, subject, body, and recipient(s) inorder to send out emails.
-
-![](/github_eFeedback_form.png)
 
 # Tech Stack
 
