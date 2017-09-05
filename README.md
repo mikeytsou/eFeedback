@@ -4,7 +4,7 @@ eFeedback is a fullstack MERN application that allows users, particulary marketi
 
 # Preview
 
-Logging in with Oauth takes the users to their homepage, where they can view a list of all the emails they've sent out. Survey results are tracked are tracked in real time with SendGrid.
+Logging in with Oauth takes the users to their homepage, where they can view a list of all the emails they've sent out. Survey results are tracked in real time with SendGrid.
 
 ![](/github_eFeedback_surveys.png)
 
